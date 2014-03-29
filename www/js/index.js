@@ -1,49 +1,127 @@
-/*
- * Licensed to the Apache Software Foundation (ASF) under one
- * or more contributor license agreements.  See the NOTICE file
- * distributed with this work for additional information
- * regarding copyright ownership.  The ASF licenses this file
- * to you under the Apache License, Version 2.0 (the
- * "License"); you may not use this file except in compliance
- * with the License.  You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
- */
-var app = {
-    // Application Constructor
-    initialize: function() {
-        this.bindEvents();
-    },
-    // Bind Event Listeners
-    //
-    // Bind any events that are required on startup. Common events are:
-    // 'load', 'deviceready', 'offline', and 'online'.
-    bindEvents: function() {
-        document.addEventListener('deviceready', this.onDeviceReady, false);
-    },
-    // deviceready Event Handler
-    //
-    // The scope of 'this' is the event. In order to call the 'receivedEvent'
-    // function, we must explicity call 'app.receivedEvent(...);'
-    onDeviceReady: function() {
-        app.receivedEvent('deviceready');
-    },
-    // Update DOM on a Received Event
-    receivedEvent: function(id) {
-        var parentElement = document.getElementById(id);
-        var listeningElement = parentElement.querySelector('.listening');
-        var receivedElement = parentElement.querySelector('.received');
+  var whois = ["허태량" , "한태희" , "김승범" , "송재우" , "김성호" , "유형덕" , "박용범" , "노성화" , "황지선" , "이혜주" , 
+               "강성진" , "좌행복" , "한창수" , "이승진" , "오송이" , "이강진" , "차규원" , "정두리" , "이현주" , "전영범" ,
+               "서동일" , "최일환" , "김세미" , "유승범" , "구상현" , "이유라" , "박헌웅" , "김종현" , "석지오" , "노의현"];
 
-        listeningElement.setAttribute('style', 'display:none;');
-        receivedElement.setAttribute('style', 'display:block;');
+  var color = ["red" , "orange" , "yellow" , "green" , "blue" , "violet" , "white" , "brown" , "skyblue" , "gray" , "lightgreen" , "silver" , "pink" , "gold" , "wine"];
 
-        console.log('Received Event: ' + id);
+  $(document).ready(function(){
+    
+    var i = 0;
+    var input2;
+    
+    Css();
+    
+    StopSize();
+      
+    $("#get").click(function(){
+      Go();
+    });
+    
+    function Go(){
+      var Count = document.getElementById("no").value;
+      document.getElementById("no").value = "";
+      Count *= 1;
+      
+      if(Count > 2){
+      
+      var input = setInterval(function() {
+        document.getElementById("Ha").innerHTML = "";
+        $("#who").css("font-size" , "300");
+        document.getElementById("who").innerHTML = Count--;
+      }, 1000);
+      
+      setTimeout(function(){
+        clearInterval(input);
+        
+        Start();
+        
+        
+        
+        }, (Count + 1) * 1000);
+      }else if(Count < 3){
+        alert("3초 이상의 시간을 입력해주세요");
+        SizeBounce();
+      }else{
+        alert("시간(초)만 입력가능합니다.");
+        SizeBounce();
+      }
     }
-};
+    
+    function Start(){
+      
+      var j = 0;
+      var k = 0;
+      var m = 0;
+      
+      input2 = setInterval(function() {
+        
+      if (m == 0){
+        document.getElementById("who").innerHTML = whois[parseInt(Math.random() * 30)];
+      }
+    
+      
+      if (k == 0) {
+        $("#who").css("font-size", j += 3);
+        if (j == 300) {
+          k = 1;
+        }
+      }
+      
+      if (m == 0 && j == 300){
+        m = 1;
+        if(m == 1){
+          document.getElementById("who").innerHTML = whois[parseInt(Math.random() * 30)];
+          document.getElementById("Ha").innerHTML = "축하합니다~^^";
+          m++;
+        }
+      }
+      
+      if (k == 1) {
+        $("#who").css("font-size", j -= 3);
+          if (j == 0) {
+            k = 0;
+          }
+        }
+      }, 30);
+    }
+    
+    function SizeBounce(){
+      
+      var j = 0;
+      var k = 0;
+      
+      input2 = setInterval(function() {
+    
+      if (k == 0) {
+        $("#who").css("font-size", j += 3);
+        if (j == 300) {
+          k = 1;
+        }
+      }
+      
+      if (k == 1) {
+        $("#who").css("font-size", j -= 3);
+          if (j == 0) {
+            k = 0;
+          }
+        }
+      }, 30);
+    }
+
+    function StopSize() {
+      $("#get").click(function() {
+      if (input2){
+        clearInterval(input2);}
+        input2 = null;
+      });
+    };
+    
+    function Css(){
+      setInterval(function() {
+      $("#title, #who, #Ha, #no").css("color" , color[i++]);
+        if(i == color.length){
+          i = 0;
+        }
+      }, 100);
+    }
+  });
