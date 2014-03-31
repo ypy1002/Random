@@ -19,9 +19,8 @@ body {
   font-size: 300px;
   text-align: center;
   font-weight: bold;
-  height: 350px;
+  height: 300px;
 }
-
   
 #get , #Cancel , #Time{
   border : 2px white solid;
