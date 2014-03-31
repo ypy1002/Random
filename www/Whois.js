@@ -41,10 +41,10 @@ $(document).ready(function(){
 		if(Count > 0 && Count < 601){
 			
 			Clear();
+			$("#SelectedName").css("font-size" , "300");
 			$("#SelectedName").html(Count--);
 			input = setInterval(function() {
 				$("#SelectedName").html(Count--);
-				$("#SelectedName").css("font-size" , "300");
 				tempCount = Count;
 			}, 1000);
 		
@@ -88,12 +88,12 @@ $(document).ready(function(){
 		
 		if (k == 0) {
 			$("#SelectedName").css("font-size", j += 3);
-			if (j == 300) {
+			if (j == 270) {
 				k = 1;
 			}
 		}
 		
-		if (m == 0 && j == 300){
+		if (m == 0 && j == 270){
 			$("#SelectedName").html(SelectedNameis[parseInt(Math.random() * 30)]);
 			$("#Congratulation").html("축하합니다~^^");
 			$("#get , #Time").css("display" , "");
@@ -116,7 +116,7 @@ $(document).ready(function(){
 		
 		if (k == 0) {
 			$("#SelectedName").css("font-size", j += 3);
-			if (j == 300) {
+			if (j == 270) {
 				k = 1;
 			}
 		}
